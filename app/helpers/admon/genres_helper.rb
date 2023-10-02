@@ -1,0 +1,2 @@
+module Admon::GenresHelper
+end

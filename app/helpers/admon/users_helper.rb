@@ -1,0 +1,2 @@
+module Admon::UsersHelper
+end
