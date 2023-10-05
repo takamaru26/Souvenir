@@ -36,7 +36,10 @@ devise_for :users, skip: [:passwords], controllers: {
   sessions: 'user/sessions'
 }
 
-
+#ゲストユーザー用
+devise_scope :user do
+    post 'users/guest_sign_in', to: 'user/sessions#guest_sign_in'
+ end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
