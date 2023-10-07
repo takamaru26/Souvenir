@@ -19,10 +19,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 #顧客用
 namespace :user do
-    resources :items, only: [:index,:show,:edit,:create,:destroy,:update] do
+    resources :items, only: [:new,:index,:show,:edit,:create,:destroy,:update] do
     resources :item_comments, only: [:create, :destroy]
   end
-  resources :users, only: [:index,:show,:edit,:update] do
+  resources :users, only: [:new,:index,:show,:edit,:update] do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
