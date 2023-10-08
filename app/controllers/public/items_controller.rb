@@ -1,13 +1,15 @@
-class User::ItemsController < ApplicationController
+class Public::ItemsController < ApplicationController
   
   def new
     @item = Item.new
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def index
+    @item = Item.page(params[:page])
   end
 
   def create
@@ -28,7 +30,7 @@ class User::ItemsController < ApplicationController
   
     private
 
-  def post_image_params
+  def item_params
     params.require(:item).permit(:name, :image, :price,)
   end
 end

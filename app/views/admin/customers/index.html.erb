@@ -1,0 +1,52 @@
+
+        <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="mb-4">会員一覧</h2>
+            
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th>会員ID</th>
+                  <th>氏名</th>
+                  <th>メールアドレス</th>
+                  <th>ステータス</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @customers.each do |customer| %>
+                  <tr>
+                    <td><%= customer.id %></td>
+                    <td>
+                      <%= link_to admin_customer_path(customer) do %>
+                        <u><%= customer.last_name + customer.first_name %></u>
+                      <% end %>
+                    </td>
+                    <td><%= customer.email %></td>
+                    
+                    <% status = Customer.select("is_deleted").find_by(id: customer.id) %>
+                    <% if status.is_deleted %>
+                      <td class="text-secondary">退会</td>
+                    <% else %>
+                      <td class="text-success">有効</td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            
+            <div class="d-flex justify-content-center">
+              <%= paginate @customers %>
+            </div>
+          </div>
+        </div>
+        </div>
+        
+      <div class="row">
+　      <h5 class="col-3">ジャンル</h5>
+    　　  <%= link_to "一覧を見る", admin_genres_path, :class => "btn btn-blok mr-5" %>
+      </div>
+        
+    </div>
+  </div>
+</div>

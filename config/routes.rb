@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-root to: 'user/homes#top'
+root to: 'public/homes#top'
 get '/search', to: 'searches#search'
 get 'tagsearches/search', to: 'tagsearches#search'
 
 #管理者用
 namespace :admin do
   root to: "homes#top"
-  resources :customers, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update]
   resources :genres, only: [:index, :edit, :create, :update]
 end
 
@@ -18,7 +18,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 
 #顧客用
-namespace :user do
+namespace :public do
     resources :items, only: [:new,:index,:show,:edit,:create,:destroy,:update] do
     resources :item_comments, only: [:create, :destroy]
   end
@@ -30,11 +30,17 @@ namespace :user do
 end
 
 # 顧客用
-# URL /users/sign_in ...
+# URL /public/sign_in ...
 devise_for :users, skip: [:passwords], controllers: {
-  registrations: "user/registrations",
-  sessions: 'user/sessions'
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
 }
+#devise_scope :user do
+  # セッションコントローラのルートをカスタムセッションコントローラにマッピング
+  #get 'users/sign_in' => 'public/sessions#new', as: :new_user_session
+  #post 'users/sign_in' => 'public/sessions#create', as: :user_session
+  #delete 'users/sign_out' => 'public/sessions#destroy', as: :destroy_user_session
+#end
 
 #ゲストユーザー用
 devise_scope :user do

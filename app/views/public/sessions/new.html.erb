@@ -1,0 +1,21 @@
+<h2>ログイン</h2>
+<%= form_with(model: resource, local: true, url: user_session_path) do |form| %>
+  <div class="field">
+    <%= form.label :email %><br />
+    <%= form.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+  <div class="field">
+    <%= form.label :password %><br />
+    <%= form.password_field :password, autocomplete: "current-password" %>
+  </div>
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= form.check_box :remember_me %>
+      <%= form.label :remember_me %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= form.submit "Log in" %>
+  </div>
+<% end %>
+<%= render "public/shared/links" %>

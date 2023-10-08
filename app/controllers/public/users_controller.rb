@@ -1,4 +1,4 @@
-class User::UsersController < ApplicationController
+class Public::UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
   before_action :is_matching_login_user, only: [:edit, :update]
 
@@ -25,13 +25,13 @@ class User::UsersController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update(user_params)
-      redirect_to user_user_path(@user), notice: "プロフィールを更新しました"
+    if @user.update!(user_params)
+      redirect_to public_user_path(@user), notice: "プロフィールを更新しました"
     else
       render "edit"
     end
   end
-  
+
   private
 
   def user_params

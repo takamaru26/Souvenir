@@ -1,0 +1,7 @@
+<% @item.each do |item| %>
+  <div>
+    <%= image_tag item.get_image %>
+    <p>商品名：<%= item.name %></p>
+    <p>価格：<%= item.price %></p>
+  </div>
+<% end %>
