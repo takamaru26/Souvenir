@@ -2,4 +2,9 @@
   <p>商品名：<%= item._name %></p>
   <p>価格：<%= item.price %></p>
   <p>投稿日：<%= item.created_at.strftime('%Y/%m/%d') %></p>
+  <!-- タグリスト -->
+  <% @item_tags.each do |tag| %>
+  <i class="fa-sharp fa-solid fa-tag"></i>
+    <%= link_to tag.name,search_tag_path(item_tag_id: tag.id) %>
+  <% end %>
 </div>

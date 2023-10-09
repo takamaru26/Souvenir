@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_07_081512) do
+ActiveRecord::Schema.define(version: 2023_10_09_105115) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -65,15 +65,31 @@ ActiveRecord::Schema.define(version: 2023_10_07_081512) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "items", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "genre_id", null: false
+  create_table "item_tags", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "price", null: false
-    t.text "explanation", null: false
-    t.integer "Purchase_date", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_item_tags_on_name", unique: true
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "genre_id"
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.text "explanation"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "post_item_tags", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "item_tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id", "item_tag_id"], name: "index_post_item_tags_on_item_id_and_item_tag_id", unique: true
+    t.index ["item_id"], name: "index_post_item_tags_on_item_id"
+    t.index ["item_tag_id"], name: "index_post_item_tags_on_item_tag_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -101,4 +117,6 @@ ActiveRecord::Schema.define(version: 2023_10_07_081512) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "post_item_tags", "item_tags"
+  add_foreign_key "post_item_tags", "items"
 end

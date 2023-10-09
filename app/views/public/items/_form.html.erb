@@ -1,11 +1,18 @@
-<%= form_with model: @item, url: public_items_path do |f| %>
-  <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-  <h4>商品名</h4>
-  <%= f.text_field :name %>
-  <h4>価格</h4>
-  <%= f.text_field :price %>
-  
-  
-  <%= f.submit '投稿' %>
-<% end %>
+<div class="container-fluid">
+  <div class="row">
+    <%= form_with model: @item, url: public_items_path do |f| %>
+      <h4>画像</h4>
+      <%= f.file_field :image, accept: "image/*" %>
+      <h4>商品名</h4>
+      <%= f.text_field :name %>
+      <h4>価格</h4>
+      <%= f.text_field :price %>
+      <h4>コメント</h4>
+      <%= f.text_field :explanation %>
+      <h4>タグ ( , で区切ると複数タグ登録できます)</h4>
+      <%= f.text_field :name,value: @tag_list %><br>
+      <%#= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+      <%= f.submit '新規登録', class: "btn btn-success mt-4" %>
+    <% end %>
+  </div>
+</div>

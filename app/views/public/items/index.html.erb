@@ -3,5 +3,11 @@
     <%= image_tag item.get_image %>
     <p>商品名：<%= item.name %></p>
     <p>価格：<%= item.price %></p>
+     <!--タグリスト-->
+  <% @tag_list.each do |list|%>
+    <i class="fa-sharp fa-solid fa-tag"></i>
+    <%=link_to list.name,search_tag_path(item_tag_id: list.id) %>
+    <%="(#{list.item.count})" %>
+  <% end %>
   </div>
 <% end %>
