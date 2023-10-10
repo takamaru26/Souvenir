@@ -9,13 +9,13 @@
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
           <li>
-            <%= link_to public_user_path(current_user), class: 'nav-link text-light' do %>
+            <%= link_to public_users_path(current_user), class: 'nav-link text-light' do %>
               <i class="fa-solid fa-house"></i> Home
             <% end %>
           </li>
           <li>
             <%=  link_to public_items_path, class: 'nav-link text-light' do %>
-              <i class="fas fa-book-open"></i> Present
+              <i class="fa-solid fa-gift"></i> Present
             <% end %>
           </li>
           <li>

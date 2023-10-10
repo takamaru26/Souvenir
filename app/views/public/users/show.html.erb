@@ -9,3 +9,17 @@
     </div>
   </div>
 </div>
+
+<div class='container'>
+  <thead>
+    <% @items.each do |item| %>
+      <div>
+        <p>アイテム画像：<%= image_tag item.get_image, size: '100x100', style: 'object-fit: cover;' %></p>
+        <p>アイテム名：<%= item.name %></p>
+        <p>価格：<%= item.price %>円</p>
+        <p>コメント：<%= item.explanation %></p>
+        <p>投稿日：<%= item.created_at.strftime('%Y/%m/%d') %></p>
+      </div>
+    <% end %>
+  </thead>
+</div>

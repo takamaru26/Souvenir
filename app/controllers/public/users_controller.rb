@@ -3,8 +3,10 @@ class Public::UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
 
   def show
+    #byebug
     @user = User.find(params[:id])
     @item = Item.new
+    @items = @user.items
   end
 
   def new

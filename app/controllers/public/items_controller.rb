@@ -21,7 +21,7 @@ class Public::ItemsController < ApplicationController
     tag_list = params[:item][:name].split(',')
     if @item.save
       @item.save_item_tags(tag_list)
-      redirect_to public_user_path(@item), notice: "投稿が完了しました"
+      redirect_to public_user_path(current_user), notice: "投稿が完了しました"
     else
       @items = Item.all
       render 'new'
