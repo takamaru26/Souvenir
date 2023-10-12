@@ -6,7 +6,8 @@ class Public::UsersController < ApplicationController
     #byebug
     @user = User.find(params[:id])
     @item = Item.new
-    @items = @user.items
+    @items = @user.items.page(params[:page])  
+    @tag_list = @item.item_tags.pluck(:name).join(',')
   end
 
   def new

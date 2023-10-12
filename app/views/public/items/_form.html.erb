@@ -10,7 +10,7 @@
       <h4>コメント</h4>
       <%= f.text_field :explanation %>
       <h4>タグ ( , で区切ると複数タグ登録できます)</h4>
-      <%= f.text_field :name,value: @tag_list %><br>
+      <%= f.text_field :tag,value: @tag_list %><br>
       <%#= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
       <%= f.submit '新規登録', class: "btn btn-success mt-4" %>
     <% end %>

@@ -1,7 +1,7 @@
   <%= image_tag @item.image, style: "max-width: 200px; max-height: 200px;" %>
-  <p>商品名：<%= item._name %></p>
-  <p>価格：<%= item.price %></p>
-  <p>投稿日：<%= item.created_at.strftime('%Y/%m/%d') %></p>
+  <p>商品名：<%= @item_name %></p>
+  <p>価格：<%= @item.price %></p>
+  <p>投稿日：<%= @item.created_at.strftime('%Y/%m/%d') %></p>
   <!-- タグリスト -->
   <% @item_tags.each do |tag| %>
   <i class="fa-sharp fa-solid fa-tag"></i>

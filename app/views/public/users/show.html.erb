@@ -1,25 +1,44 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-3'>
-      <h1>My Page</h1>
+      <h3>User Information</h3>
       <%= render 'info', user: @user %>
 
-      <h3 class="mt-3">プレゼント登録</h3>
+      <h3 class="mt-3">New Present</h3>
       <%= render 'public/items/form', item: @item %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+    <h2>Item List</h2>
+      <table class='table'>
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <th>アイテム画像</th>
+              <td><%= image_tag item.get_image, size: '100x100', style: 'object-fit: cover;' %></td>
+              <th>アイテム名</th>
+              <td><%= link_to item.name,public_item_path(item.id) %></td>
+              <th>価格  : <%= item.price %>円</th>
+            </tr>
+            <tr>
+              <th>コメント</th>
+              <td><%= item.explanation %></td>
+              <th>投稿日</th>
+              <td><%= item.created_at.strftime('%Y/%m/%d') %></td>
+              <th><%= link_to "編集する", edit_public_item_path, class: "btn btn-success ml-5 pl-5 pr-5" %></th>
+            </tr>
+            <tr>
+              <!-- タグリスト -->
+              <td><% item.item_tags.each do |tag| %>
+              <i class="fa-sharp fa-solid fa-tag"></i>
+                <%= link_to tag.name,search_tag_path(item_tag_id: tag.id) %>
+              <% end %>
+            </td>
+            </tr>
+          <% end %>
+          
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
-
-<div class='container'>
-  <thead>
-    <% @items.each do |item| %>
-      <div>
-        <p>アイテム画像：<%= image_tag item.get_image, size: '100x100', style: 'object-fit: cover;' %></p>
-        <p>アイテム名：<%= item.name %></p>
-        <p>価格：<%= item.price %>円</p>
-        <p>コメント：<%= item.explanation %></p>
-        <p>投稿日：<%= item.created_at.strftime('%Y/%m/%d') %></p>
-      </div>
-    <% end %>
-  </thead>
-</div>
+  <%= paginate @items %>
