@@ -1,10 +1,25 @@
-  <%= image_tag @item.image, style: "max-width: 200px; max-height: 200px;" %>
-  <p>商品名：<%= @item_name %></p>
-  <p>価格：<%= @item.price %></p>
-  <p>投稿日：<%= @item.created_at.strftime('%Y/%m/%d') %></p>
-  <!-- タグリスト -->
-  <% @item_tags.each do |tag| %>
-  <i class="fa-sharp fa-solid fa-tag"></i>
-    <%= link_to tag.name,search_tag_path(item_tag_id: tag.id) %>
+<div class='col-md-8 offset-md-1'>
+  <h3>Present Detail</h3>
+  <table class='table'>
+    <td rowspan="3" scope="rowgroup"><%= image_tag @item.image, size: '200x200', style: 'object-fit: cover;'%><td>
+    <tr>
+      <th>商品名：</th><td><%= @item.name %></td>
+      <th>価格：</th><td><%= @item.price %></td>
+    </tr>
+    <tr>
+      <th>コメント:<td><%= @item.explanation %></td></th>
+      <th>投稿日：</th><td><%= @item.created_at.strftime('%Y/%m/%d') %></td>
+    <tr>
+      <!-- タグリスト -->
+      <td><% @item_tags.each do |tag| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+        <%= link_to tag.name,search_tag_path(item_tag_id: tag.id) %>
+      <% end %>
+      </td>
+  <% if @item.user == current_user %>
+    <td><%= link_to 'Edit', edit_public_item_path(@item), class: "btn btn-sm btn-success edit_book_#{@item.id}" %></td>
+    <td><%= link_to 'Destroy', public_item_path(@item), method: :delete, "data-confirm" => "本当に消しますか？" , class: "btn btn-sm btn-danger destroy_item_#{@item.id}"%></td>
   <% end %>
+    </tr>
+  </table>
 </div>

@@ -1,5 +1,5 @@
 class Public::ItemsController < ApplicationController
-  
+
   def new
     @item = Item.new
   end
@@ -37,8 +37,11 @@ class Public::ItemsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to public_items_path
   end
-  
+
   def search_tag
     #検索結果画面でもタグ一覧表示
     @tag_list = ItemTag.all
@@ -47,7 +50,7 @@ class Public::ItemsController < ApplicationController
     　#検索されたタグに紐づく投稿を表示
     @Item = @tag.item
   end
-  
+
     private
 
   def item_params

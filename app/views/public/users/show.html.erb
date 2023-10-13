@@ -8,34 +8,26 @@
       <%= render 'public/items/form', item: @item %>
     </div>
     <div class="col-md-8 offset-md-1">
-    <h2>Item List</h2>
+    <h3>Recent Present</h3>
       <table class='table'>
         <tbody>
           <% @items.each do |item| %>
             <tr>
-              <th>アイテム画像</th>
-              <td><%= image_tag item.get_image, size: '100x100', style: 'object-fit: cover;' %></td>
-              <th>アイテム名</th>
-              <td><%= link_to item.name,public_item_path(item.id) %></td>
-              <th>価格  : <%= item.price %>円</th>
+              <td rowspan="3" scope="rowgroup"><%= image_tag item.get_image, size: '100x100', style: 'object-fit: cover;' %></td>
+              <th>アイテム名:<td><%= link_to item.name,public_item_path(item.id) %></td></th>
+              <th>価格:<td><%= item.price %>円</td></th>
             </tr>
             <tr>
-              <th>コメント</th>
-              <td><%= item.explanation %></td>
-              <th>投稿日</th>
-              <td><%= item.created_at.strftime('%Y/%m/%d') %></td>
-              <th><%= link_to "編集する", edit_public_item_path, class: "btn btn-success ml-5 pl-5 pr-5" %></th>
+              <th>コメント:</th><td><%= item.explanation %></td>
+              <th>投稿日:<td><%= item.created_at.strftime('%Y/%m/%d') %></td></th>
             </tr>
-            <tr>
               <!-- タグリスト -->
               <td><% item.item_tags.each do |tag| %>
               <i class="fa-sharp fa-solid fa-tag"></i>
                 <%= link_to tag.name,search_tag_path(item_tag_id: tag.id) %>
               <% end %>
-            </td>
-            </tr>
+              </td>
           <% end %>
-          
         </tbody>
       </table>
     </div>
