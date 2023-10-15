@@ -4,8 +4,8 @@
         <tbody>
           <% @item.each do |item| %>
             <tr>
-              <td rowspan="3" scope="rowgroup"><%= image_tag item.get_image, size: '80x80', style: 'object-fit: cover;' %></td>
-              <th>ユーザーネーム：</th><td><%= item.user.last_name+item.user.first_name %></td>
+              <td rowspan="2" scope="rowgroup"><%= image_tag item.get_image, size: '80x80', style: 'object-fit: cover;' %></td>
+              <th>ユーザーネーム：</th><td><%= link_to item.user.last_name+item.user.first_name,public_user_path(item.user.id) %></td>
               <th>アイテム名：</th><td><%= link_to item.name,public_item_path(item.id) %></td>
               <th>価格：</th><td><%= item.price %></td>
             </tr>

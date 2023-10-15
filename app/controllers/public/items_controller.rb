@@ -31,9 +31,19 @@ class Public::ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      flash[:notice] = "You have updated item successfully."
+      redirect_to  public_item_path(@item.id)
+    else
+      @items = Item.all
+      flash[:notice] = 'errors prohibited this obj from being saved:'
+      render :edit
+    end
   end
 
   def destroy
