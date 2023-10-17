@@ -20,18 +20,18 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
   
-  # フォローしたときの処理
-  def follow(user)
+  
+  
+  def follow(user) # フォローしたときの処理
     relationships.create(followed_id: user.id)
   end
-  # フォローを外すときの処理
-  def unfollow(user)
+  def unfollow(user) # フォローを外すときの処理
     relationships.find_by(followed_id: user.id).destroy
   end
-  # フォローしているか判定
-  def following?(user)
+  def following?(user) # フォローしているか判定
     followings.include?(user)
   end
+  
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64

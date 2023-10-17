@@ -1,25 +1,44 @@
 <div class='col-md-8 offset-md-1'>
   <h3>アイテム詳細情報</h3>
   <table class='table'>
-    <td rowspan="4" scope="rowgroup"><%= image_tag @item.image, size: '200x200', style: 'object-fit: cover;'%><td>
     <tr>
-      <th>商品名：</th><td><%= @item.name %></td>
-      <th>価格：</th><td><%= @item.price %></td>
+      <td rowspan="4" scope="rowgroup"><%= image_tag @item.image, size: '200x200', style: 'object-fit: cover;' %></td>
     </tr>
     <tr>
-      <th>コメント:<td><%= @item.explanation %></td></th>
-      <th>投稿日：</th><td><%= @item.created_at.strftime('%Y/%m/%d') %></td>
+      <th>商品名：</th>
+      <td><%= @item.name %></td>
+      <th>価格：</th>
+      <td><%= @item.price %></td>
+    </tr>
     <tr>
-      <!-- タグリスト -->
-      <td><% @item_tags.each do |tag| %>
-      <i class="fa-sharp fa-solid fa-tag"></i>
-        <%= link_to tag.name,search_tag_path(item_tag_id: tag.id) %>
-      <% end %>
+      <th>コメント:</th>
+      <td><%= @item.explanation %></td>
+      <th>投稿日：</th>
+      <td><%= @item.created_at.strftime('%Y/%m/%d') %></td>
+    </tr>
+    <tr>
+      <td>
+        <!-- タグリスト -->
+        <% @item_tags.each do |tag| %>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+          <%= link_to tag.name, search_tag_path(item_tag_id: tag.id) %>
+        <% end %>
       </td>
-      <% if @item.user == current_user %>
-        <td><%= link_to 'Edit', edit_public_item_path(@item), class: "btn btn-sm btn-success edit_book_#{@item.id}" %></td>
-        <td><%= link_to 'Destroy', public_item_path(@item), method: :delete, "data-confirm" => "本当に消しますか？" , class: "btn btn-sm btn-danger destroy_item_#{@item.id}"%></td>
-      <% end %>
+      <tr>
+        <td>
+          <div class="form-group">
+            <%= render "static_rate", item: @item %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="4">
+        <% if @item.user == current_user %>
+          <%= link_to 'Edit', edit_public_item_path(@item), class: "btn btn-sm btn-success edit_book_#{@item.id}" %>
+          <%= link_to 'Destroy', public_item_path(@item), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger destroy_item_#{@item.id}" %>
+        <% end %>
+      </td>
     </tr>
   </table>
 </div>

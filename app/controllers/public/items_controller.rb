@@ -20,6 +20,7 @@ class Public::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.user_id = current_user.id
+    # 受け取った値を,で区切って配列にする
     tag_list = params[:item][:tag].split(',')
     if @item.save
       @item.save_item_tags(tag_list)
@@ -32,6 +33,7 @@ class Public::ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @tag_list = @item.item_tags.pluck(:name).join(',')
   end
 
   def update
@@ -64,6 +66,6 @@ class Public::ItemsController < ApplicationController
     private
 
   def item_params
-    params.require(:item).permit(:name, :image, :price, :explanation)
+    params.require(:item).permit(:name, :image, :price, :explanation, :star)
   end
 end

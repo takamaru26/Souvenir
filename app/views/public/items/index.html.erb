@@ -18,6 +18,32 @@
                 <%= link_to tag.name,search_tag_path(item_tag_id: tag.id) %>
               <% end %>
               </td>
+              <% if item.id.nil? %>
+                <div class="form-group" id="star">
+                <%= f.label :star %>
+                <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+                  <div id="post_raty"></div>
+                </div>
+                <script>
+                  $(document).on('turbolinks:load', function() {
+                    let elem = document.querySelector('#post_raty');
+                    if (elem == null) return;
+              
+                    elem.innerHTML = ""
+                    let opt = {  
+                      starOn: "<%= asset_path('star-on.png') %>",
+                      starOff: "<%= asset_path('star-off.png') %>",
+                      starHalf: "<%= asset_path('star-half.png') %>",
+                      scoreName: 'item[star]',
+                    };
+                    raty(elem, opt);
+                  });
+                </script>
+              <% else %>
+                <div class="form-group">
+                  <%= render "public/items/static_rate", item: item %>
+                </div>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

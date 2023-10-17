@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 root to: 'public/homes#top'
-get '/search', to: 'searches#search'
 get "search_tag" => "items#search_tag"
 
 #管理者用
