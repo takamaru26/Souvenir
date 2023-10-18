@@ -7,7 +7,7 @@ class Public::ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @tag_list = @item.item_tags.pluck(:name).join(',')
-    @item_tags = @item.item_tags
+    @post_item_tags = @item.post_item_tags
   end
 
   def index
@@ -55,12 +55,9 @@ class Public::ItemsController < ApplicationController
   end
 
   def search_tag
-    #検索結果画面でもタグ一覧表示
     @tag_list = ItemTag.all
-    　#検索されたタグを受け取る
     @tag = ItemTag.find(params[:item_tag_id])
-    　#検索されたタグに紐づく投稿を表示
-    @Item = @tag.item
+    @Item = @tag.post_item_tags
   end
 
     private

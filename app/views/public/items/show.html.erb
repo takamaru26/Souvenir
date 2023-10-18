@@ -24,14 +24,12 @@
           <%= link_to tag.name, search_tag_path(item_tag_id: tag.id) %>
         <% end %>
       </td>
-      <tr>
-        <td>
-          <div class="form-group">
-            <%= render "static_rate", item: @item %>
-          </div>
-        </td>
-      </tr>
-    <% end %>
+      <td>
+        <div class="form-group">
+          <%= render "static_rate", item: @item %>
+        </div>
+      </td>
+    </tr>
     <tr>
       <td colspan="4">
         <% if @item.user == current_user %>
