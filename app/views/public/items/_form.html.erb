@@ -6,15 +6,15 @@
       <h4>アイテム名</h4>
       <%= f.text_field :name %>
       <h4>価格</h4>
-      <%= f.text_field :price %>
+      <%= f.text_field :price %>円
       <h4>コメント</h4>
       <%= f.text_field :explanation %>
-      <h4>タグ ( , で区切ると複数タグ登録できます)</h4>
+      <h4>タグ</h4>
       <%= f.text_field :tag,value: @tag_list %><br>
-
+      ( , で区切ると複数のタグを登録可)
         <% if item.id.nil? %>
       <div class="form-group" id="star">
-      <%= f.label :star %>
+      <h4>レビュー</h4>
       <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
         <div id="post_raty"></div>
       </div>
@@ -22,7 +22,6 @@
         $(document).on('turbolinks:load', function() {
           let elem = document.querySelector('#post_raty');
           if (elem == null) return;
-
           elem.innerHTML = ""
           let opt = {
             starOn: "<%= asset_path('star-on.png') %>",
@@ -39,7 +38,7 @@
       </div>
     <% end %>
       <%#= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
-      <%= f.submit '新規登録', class: "btn btn-success mt-4" %>
+      <%= f.submit '登録', class: "btn btn-success mt-4" %>
     <% end %>
   </div>
 </div>

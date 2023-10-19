@@ -7,7 +7,7 @@ class Public::ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @tag_list = @item.item_tags.pluck(:name).join(',')
-    @post_item_tags = @item.post_item_tags
+    @tag_tags = @item.item_tags
   end
 
   def index
@@ -38,7 +38,9 @@ class Public::ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
+    tag_list=params[:item][:name].split(',')
     if @item.update(item_params)
+      @item.save_item_tags(tag_list)
       flash[:notice] = "You have updated item successfully."
       redirect_to  public_item_path(@item.id)
     else
@@ -56,13 +58,13 @@ class Public::ItemsController < ApplicationController
 
   def search_tag
     @tag_list = ItemTag.all
-    @tag = ItemTag.find(params[:item_tag_id])
-    @Item = @tag.post_item_tags
+    @item_tag = ItemTag.find(params[:item_tag_id])
+    @items = @item_tag.items
   end
 
     private
 
   def item_params
-    params.require(:item).permit(:name, :image, :price, :explanation, :star)
+    params.require(:item).permit(:name, :image, :price, :explanation, :star, :tag_id, :item_id)
   end
 end

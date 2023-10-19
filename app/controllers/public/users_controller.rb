@@ -10,6 +10,11 @@ class Public::UsersController < ApplicationController
     @tag_list = @item.item_tags.pluck(:name).join(',')
   end
 
+  def index
+    @users = User.all
+    @item = Item.new
+  end
+
   def new
     flash[:notice]="Welcome! You have signed up successfully."
     @user == current_user

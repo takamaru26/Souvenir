@@ -9,30 +9,34 @@
     </div>
     <div class="col-md-8 offset-md-1">
     <h3>Recent Present</h3>
-      <table class='table'>
-        <tbody>
-          <% @items.each do |item| %>
-            <tr>
-              <td rowspan="2" scope="rowgroup"><%= image_tag item.get_image, size: '100x100', style: 'object-fit: cover;' %></td>
-              <th>アイテム名:</th><td><%= link_to item.name,public_item_path(item.id) %></td>
-              <th>価格:</th><td><%= item.price %>円</td>
-              <th>コメント:</th><td><%= item.explanation %></td>
-            </tr>
-            <tr>
-              <th>投稿日:</th><td><%= item.created_at.strftime('%Y/%m/%d') %></td>
-              <!-- タグリスト -->
-              <td><% item.item_tags.each do |tag| %>
-              <i class="fa-sharp fa-solid fa-tag"></i>
-                <%= link_to tag.name,search_tag_path(item_tag_id: tag.id) %>
-              <% end %>
-              </td>
-              <td>
-                <%= render "public/items/static_rate", item: item %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="sample_box3_1">
+        <span class="sample_box_title"></span>
+        <table class='table'>
+          <tbody>
+            <% @items.each do |item| %>
+              <tr>
+                <td rowspan="2" scope="rowgroup"><%= image_tag item.get_image, size: '100x100', style: 'object-fit: cover;' %></td>
+                <th>アイテム名:</th><td><%= link_to item.name,public_item_path(item.id) %></td>
+                <th>価格:</th><td><%= item.price %>円</td>
+              </tr>
+              <tr>
+                <th>コメント:</th><td><%= item.explanation %></td>
+                <th>投稿日:</th><td><%= item.created_at.strftime('%Y/%m/%d') %></td>
+              </tr>
+              <tr>
+                <!-- タグリスト -->
+                <td><% item.item_tags.each do |tag| %>
+                <i class="fa-sharp fa-solid fa-tag"></i>
+                  <%= link_to tag.name,search_tag_path(item_tag_id: tag.id) %>
+                <% end %>
+                </td>
+                <td>
+                  <%= render "public/items/static_rate", item: item %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
     </div>
   </div>
 </div>

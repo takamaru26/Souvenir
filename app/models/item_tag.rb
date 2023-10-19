@@ -1,6 +1,7 @@
 class ItemTag < ApplicationRecord
-  has_many :post_item_tags, dependent: :destroy
-  has_many :item, through: :item_tags
+  #belongs_to :tag, dependent: :destroy
+  has_many :tags
+  # belongs_to :item
+  has_many :items, through: :tags
 
-  validates :name, presence:true, length:{maximum:50}
 end

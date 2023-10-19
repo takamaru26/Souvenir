@@ -1,3 +1,57 @@
 // Place all the styles related to the user/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.sample_box3_1 {
+    position: relative;
+    padding: 1em 1.5em;
+    margin: 2em 0;
+    border: solid 3px #FF6928;/*線*/
+    border-radius: 8px;/*角の丸み*/
+    background: #FFFFFF;/*背景色*/
+    color: #000000;/*文字色*/
+}
+.sample_box3_1 .sample_box_title{
+    position: absolute;
+    display: inline-block;
+    top: -13px;
+    left: 10px;
+    padding: 0 10px;
+    line-height: 1;
+    font-size: 1.3em;/*タイトル文字サイズ*/
+    background: #ffffff;/*タイトル文字背景色*/
+    color: #FF6928;/*タイトル文字色*/
+    font-weight: bold;
+}
+.sample_box3_1 p {
+    margin: 0; 
+    padding: 0;
+}
+
+.sample_box11 {
+   width: 260px;/* 紙の横幅 100%にすると全幅表示に */
+   padding: 15px;
+   margin: 2em auto;
+   background: #f7f092;/* 紙の色 */
+   color: #000;/* 文字色 */
+   box-shadow: 4px 4px 4px rgba(0,0,0,0.03);transform:rotate(2deg);
+   word-break: break-all;
+}
+.sample_box11 p {
+    margin: 0; 
+    padding: 0;
+    font-size: 0.9em;
+}
+.sample_box11_tape {
+    width: 50%;
+    height: 35px;
+    margin: -25px auto 0;
+    background: #989898;
+    transform: rotate(-3deg);
+    opacity: 0.1;
+}
+.sample_box11_title {
+    text-align: center;
+    font-size: 1.3em!important;
+    margin-top: 10px!important;
+}

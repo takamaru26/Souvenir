@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>souvenir</title>
-     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://kit.fontawesome.com/55c3615256.js" crossorigin="anonymous"></script>
-  </head>
-
-
-  <body>
-    <header>
-      <%= render 'layouts/header' %>
-    </header>
-
-    <%= yield %>
-  </body>
+  <font face="HG丸ｺﾞｼｯｸM-PRO black"><h1>souvenir</h1>
+    <head>
+      <title>souvenir</title>
+       <meta name="viewport" content="width=device-width,initial-scale=1">
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
+    
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <script src="https://kit.fontawesome.com/55c3615256.js" crossorigin="anonymous"></script>
+    </head>
+    
+    
+    <body>
+      <header>
+        <%= render 'layouts/header' %>
+      </header>
+    
+      <%= yield %>
+    </body>
+  </font>
 </html>

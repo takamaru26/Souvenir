@@ -1,5 +1,5 @@
 <div class='col-md-8 offset-md-1'>
-  <h3>アイテム詳細情報</h3>
+  <h3>Present Detail</h3>
   <table class='table'>
     <tr>
       <td rowspan="4" scope="rowgroup"><%= image_tag @item.image, size: '200x200', style: 'object-fit: cover;' %></td>
@@ -8,7 +8,7 @@
       <th>商品名：</th>
       <td><%= @item.name %></td>
       <th>価格：</th>
-      <td><%= @item.price %></td>
+      <td><%= @item.price %>円</td>
     </tr>
     <tr>
       <th>コメント:</th>
@@ -19,9 +19,11 @@
     <tr>
       <td>
         <!-- タグリスト -->
-        <% @item_tags.each do |tag| %>
-          <i class="fa-sharp fa-solid fa-tag"></i>
-          <%= link_to tag.name, search_tag_path(item_tag_id: tag.id) %>
+        <% if @item_tags.present? %>
+          <% @item_tags.each do |tag| %>
+            <i class="fa-sharp fa-solid fa-tag"></i>
+            <%= link_to tag.name, search_tag_path(item_tag_id: tag.id) %>
+          <% end %>
         <% end %>
       </td>
       <td>

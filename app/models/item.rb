@@ -2,9 +2,9 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   has_many :genles
-  has_many :post_item_tags, dependent: :destroy
-  has_many :item_tags, through: :post_item_tags
-  
+  has_many :tags, dependent: :destroy
+  has_many :item_tags, through: :tags
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -27,7 +27,10 @@ class Item < ApplicationRecord
 
     # 新しいタグを保存
     new_tags.each do |new_name|
-      item_tag = ItemTag.find_or_create_by(name:new_name)
+      item_tag = ItemTag.find_or_create_by(name: new_name) do |item_tag|
+        item_tag.name = new_name
+      end
+
       self.item_tags << item_tag
     end
   end
