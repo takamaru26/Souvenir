@@ -20,8 +20,6 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
   
-  
-  
   def follow(user) # フォローしたときの処理
     relationships.create(followed_id: user.id)
   end
@@ -37,4 +35,7 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
     end
   end
+  
+  enum status:{nonreleased: 0, released: 1}
+  
 end

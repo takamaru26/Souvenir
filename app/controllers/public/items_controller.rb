@@ -38,7 +38,7 @@ class Public::ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    tag_list=params[:item][:name].split(',')
+    tag_list=params[:item][:tag].split(',')
     if @item.update(item_params)
       @item.save_item_tags(tag_list)
       flash[:notice] = "You have updated item successfully."
@@ -65,6 +65,6 @@ class Public::ItemsController < ApplicationController
     private
 
   def item_params
-    params.require(:item).permit(:name, :image, :price, :explanation, :star, :tag_id, :item_id)
+    params.require(:item).permit(:name, :image, :price, :explanation, :star, :tag_id, :item_id,)
   end
 end

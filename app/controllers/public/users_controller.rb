@@ -38,17 +38,29 @@ class Public::UsersController < ApplicationController
     end
   end
 
-# フォロー一覧
-def follows
-  user = User.find(params[:id])
-  @users = user.following_users
-end
+  # フォロー一覧
+  def follows
+    user = User.find(params[:id])
+    @users = user.following_users
+  end
+  # フォロワー一覧
+  def followers
+    user = User.find(params[:id])
+    @user = user.follower_users
+  end
 
-# フォロワー一覧
-def followers
-  user = User.find(params[:id])
-  @user = user.follower_users
-end
+  def release
+    @user =  User.find(params[:user_id])
+    @user.released! unless @user.released?
+    redirect_to  "/users/#{@user.id}/edit", notice: 'このアカウントを公開しました'
+  end
+
+  def nonrelease
+    @user =  User.find(params[:user_id])
+    @user.nonreleased! unless @user.nonreleased?
+    redirect_to "/users/#{@user.id}/edit", notice: 'このアカウントを非公開にしました'
+  end
+
 
   private
 
