@@ -25,6 +25,8 @@ namespace :public do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
+    patch 'users/nonrelease', to: 'users#update_nonrelease', as: 'update_nonrelease_user'
+    patch 'users/release', to: 'users#update_release', as: 'update_release_user'
   end
 end
 

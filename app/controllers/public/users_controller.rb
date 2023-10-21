@@ -11,7 +11,7 @@ class Public::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.all.where(status: 1)
     @item = Item.new
   end
 
@@ -49,16 +49,16 @@ class Public::UsersController < ApplicationController
     @user = user.follower_users
   end
 
-  def release
+  def update_release
     @user =  User.find(params[:user_id])
     @user.released! unless @user.released?
-    redirect_to  "/users/#{@user.id}/edit", notice: 'このアカウントを公開しました'
+    redirect_to  "/public/users/#{@user.id}/edit", notice: 'このアカウントを公開しました'
   end
 
-  def nonrelease
+  def update_nonrelease
     @user =  User.find(params[:user_id])
     @user.nonreleased! unless @user.nonreleased?
-    redirect_to "/users/#{@user.id}/edit", notice: 'このアカウントを非公開にしました'
+    redirect_to "/public/users/#{@user.id}/edit", notice: 'このアカウントを非公開にしました'
   end
 
 

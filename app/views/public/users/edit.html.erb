@@ -1,7 +1,7 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h2>ユーザー情報編集</h2>
+      <h2>User Edit Information</h2>
       <%= form_with model: @user, url: public_user_path, local:true do |f| %>
         <%= render 'layouts/errors', obj: @user %>
         <div class="form-group">
@@ -23,9 +23,9 @@
         </div>
         <% end %>
         <% if @user.released? %>
-          <%= link_to '非公開にする',"/users/nonrelease/#{@user.id}", method: :patch%>
+          <%= link_to '非公開にする',"/public/users/#{@user.id}/users/nonrelease", method: :patch%>
         <% else %>
-          <%= link_to '公開する',"/users/release/#{@user.id}", method: :patch%>
+          <%= link_to '公開する',"/public/users/#{@user.id}/users/release", method: :patch%>
         <% end %>
     </div>
   </div>
