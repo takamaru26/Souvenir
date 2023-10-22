@@ -20,7 +20,3 @@ window.raty = function(elem,opt) {
   raty.init();
   return raty;
 }
-
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()

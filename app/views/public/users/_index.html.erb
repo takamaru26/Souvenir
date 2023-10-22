@@ -20,9 +20,9 @@
         <td>
           <% if current_user != user%>
             <% if current_user.following?(user) %>
-              <%= link_to "フォロー外す", public_user_relationships_path(user.id), method: :delete %>
+              <%= link_to "フォロー外す", public_user_unfollow_path(user.id), method: :delete, class: "btn btn-info" %>
             <% else %>
-              <%= link_to "フォローする", public_user_relationships_path(user.id), method: :post %>
+              <%= link_to "フォローする", public_user_to_follow_path(user.id), method: :post, class: "btn btn-success" %>
             <% end %>
           <% end %>
     <% end %>

@@ -4,7 +4,8 @@ class Item < ApplicationRecord
   has_many :genles
   has_many :tags, dependent: :destroy
   has_many :item_tags, through: :tags
-
+  
+  
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

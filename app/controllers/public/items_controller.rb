@@ -11,10 +11,23 @@ class Public::ItemsController < ApplicationController
   end
 
   def index
-    @item = Item.all
-    @tag_list = ItemTag.all
-    @user = current_user
     @items = Item.page(params[:page])
+    if params[:price]
+      case params[:price]
+      when "option1"
+        @items = Item.where(price: 0..5000).page(params[:page])
+      when "option2"
+        @items = Item.where(price: 5001..10000).page(params[:page])
+      when "option3"
+        @items = Item.where(price: 10001..20000).page(params[:page])
+      when "option4"
+        @items = Item.where(price: 20001..30000).page(params[:page])
+      when "option5"
+        @items = Item.where(price: 30001..999999).page(params[:page])
+      when "option6"
+        @items = Item.all.page(params[:page])
+      end
+    end
   end
 
   def create

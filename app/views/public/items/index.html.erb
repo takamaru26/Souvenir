@@ -1,5 +1,17 @@
 <div class='col-md-10 offset-md-1'>
   <h3>Present List</h3>
+    <%= form_with model: @items, url: public_items_path, method: :get do |item| %>
+    <select name="price">
+      <option value="all">すべて</option>
+      <option value="option1">～5000</option>
+      <option value="option2">～10000</option>
+      <option value="option3">～20000</option>
+      <option value="option4">～30000</option>
+      <option value="option5">30000～</option>
+    </select>
+    <%= submit_tag '検索' %>
+    <% end %>
+    
     <div class="sample_box3_1">
     <span class="sample_box_title"></span>
     <table class='table'>
