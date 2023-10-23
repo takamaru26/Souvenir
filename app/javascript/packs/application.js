@@ -15,6 +15,8 @@ import "../stylesheets/application";
 
 import Raty from "raty.js"
 
+require("@rails/ujs").start();
+
 window.raty = function(elem,opt) {
   let raty =  new Raty(elem,opt)
   raty.init();

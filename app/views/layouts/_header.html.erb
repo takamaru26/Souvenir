@@ -7,7 +7,26 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-        <% if user_signed_in? %>
+          
+          <% if admin_signed_in? %>
+          <div class="row">
+            <li>
+              <%= link_to admin_items_path do %>
+                <i class="fa-solid fa-gift">商品一覧</i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_users_path do %>
+                <i class="fas fa-users">会員一覧</i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_admin_session_path, method: :delete do %>
+                <i class="fas fa-sign-out-alt mr-2">ログアウト</i>
+              <% end %>
+            </li>
+              
+        <% elsif user_signed_in? %>
           <li>
             <%= link_to public_user_path(current_user), class: 'nav-link text-light' do %>
               <i class="fa-solid fa-house"></i> Home

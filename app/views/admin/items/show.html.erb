@@ -1,5 +1,5 @@
 <div class='col-md-8 offset-md-1'>
-  <h3>Present Detail</h3>
+  <h3>投稿アイテム詳細情報</h3>
   <table class='table'>
     <tr>
       <td rowspan="4" scope="rowgroup"><%= image_tag @item.image, size: '200x200', style: 'object-fit: cover;' %></td>
@@ -28,21 +28,14 @@
       </td>
       <td>
         <div class="form-group">
-          <%= render "static_rate", item: @item %>
+          <%= render "public/items/static_rate", item: @item %>
         </div>
       </td>
     </tr>
     <tr>
       <td colspan="4">
-        <% if @item.user == current_user %>
-          <%= link_to 'Edit', edit_public_item_path(@item), class: "btn btn-sm btn-success edit_book_#{@item.id}" %>
-          <%= link_to 'Destroy', public_item_path(@item), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger destroy_item_#{@item.id}" %>
-        <% end %>
+          <%= link_to 'アイテム削除', admin_item_path(@item), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-sm btn-danger destroy_item_#{@item.id}" %>
       </td>
     </tr>
   </table>
-  <div id="comment_index">
-    <%= render "public/item_comments/index", item: @item %>
-  </div>
-  <%= render "public/item_comments/form", item: @item, item_comment: @item_comment %>
 </div>

@@ -1,11 +1,12 @@
 class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :user
+  has_many :item_comments, dependent: :destroy
   has_many :genles
   has_many :tags, dependent: :destroy
   has_many :item_tags, through: :tags
-  
-  
+
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

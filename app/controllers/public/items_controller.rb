@@ -6,6 +6,7 @@ class Public::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @item_comment = ItemComment.new
     @tag_list = @item.item_tags.pluck(:name).join(',')
     @tag_tags = @item.item_tags
   end
@@ -66,7 +67,7 @@ class Public::ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to public_items_path
+    redirect_to public_user_path
   end
 
   def search_tag
