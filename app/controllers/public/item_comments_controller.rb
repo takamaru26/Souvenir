@@ -4,8 +4,11 @@ class Public::ItemCommentsController < ApplicationController
     item = Item.find(params[:item_id])
     @comment = current_user.item_comments.new(item_comment_params)
     @comment.item_id = item.id
-    @comment.save
-    #redirect_to request.referer
+    if @comment.save
+      #redirect_to request.referer
+    else
+    
+    end
   end
 
   def destroy

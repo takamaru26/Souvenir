@@ -26,8 +26,8 @@ Rails.application.routes.draw do
       resources :item_comments, only: [:create, :destroy]
     end
     resources :users, only: [:new,:index,:show,:edit,:update] do
-      get 'unfollow' => 'relationships#destroy', as: 'unfollow'
-      get 'to_follow' => 'relationships#create', as: 'to_follow'
+      delete 'unfollow' => 'relationships#destroy', as: 'unfollow'
+      post 'to_follow' => 'relationships#create', as: 'to_follow'
       get 'followings_show' => 'relationships#followings', as: 'followings'
       get 'followers_show' => 'relationships#followers', as: 'followers'
     end
@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   #ゲストユーザー用
   devise_scope :user do
-    get 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
