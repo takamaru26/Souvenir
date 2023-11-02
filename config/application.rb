@@ -10,6 +10,7 @@ module Souvenir
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.paths.add 'lib', eager_load: true
     config.autoloader = :classic # クラシックモードを明示的に指定する
     # Configuration for the application, engines, and railties goes here.
     #

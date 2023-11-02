@@ -33,10 +33,14 @@ class Public::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    item_tags = Vision.get_image_data(item_params[:image])
     @item.user_id = current_user.id
     # 受け取った値を,で区切って配列にする
     tag_list = params[:item][:tag].split(',')
     if @item.save
+      item_tags.each do |tag|
+        @item.item_tags.create(name: tag)
+      end
       @item.save_item_tags(tag_list)
       redirect_to public_user_path(current_user), notice: "投稿が完了しました"
     else
@@ -67,7 +71,7 @@ class Public::ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to public_user_path
+    redirect_to public_items_path
   end
 
   def search_tag
