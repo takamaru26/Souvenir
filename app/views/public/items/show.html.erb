@@ -31,6 +31,11 @@
           <%= render "static_rate", item: @item %>
         </div>
       </td>
+      <td>
+        <% @item.ai_tags.each do |item_tag| %>
+        <span class="label"><%= item_tag.name %></span>
+      <% end %>
+      </td>
     </tr>
     <tr>
       <td colspan="4">

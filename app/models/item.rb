@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_many :item_comments, dependent: :destroy
   has_many :genles
+  has_many :ai_tags, dependent: :destroy
   has_many :tags, dependent: :destroy
   has_many :item_tags, through: :tags
 
