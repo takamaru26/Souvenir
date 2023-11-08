@@ -12,17 +12,17 @@
         <% if admin_signed_in? %>
         <div class="row">
           <li>
-            <%= link_to admin_items_path do %>
+            <%= link_to admin_items_path, class: 'nav-link text-light' do %>
               <i class="fa-solid fa-gift">商品一覧</i>
             <% end %>
           </li>
           <li>
-            <%= link_to admin_users_path do %>
+            <%= link_to admin_users_path, class: 'nav-link text-light' do %>
               <i class="fas fa-users">会員一覧</i>
             <% end %>
           </li>
           <li>
-            <%= link_to destroy_admin_session_path, method: :delete  do %>
+            <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-light' do %>
               <i class="fas fa-sign-out-alt mr-2">ログアウト</i>
             <% end %>
           </li>

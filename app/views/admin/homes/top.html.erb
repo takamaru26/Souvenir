@@ -4,12 +4,18 @@
       <h2 class="mb-4">管理者メニュー</h2>
         <table class="table">
         <div class="row">
-          <h5 class="col-3">ユーザー</h5>
-        　　  <%= link_to "一覧を見る", admin_users_path, :class => "btn btn-blok mr-5" %>
-        　<h5 class="col-3">投稿アイテム</h5>
-        　　  <%= link_to "一覧を見る", admin_items_path, :class => "btn btn-blok mr-5" %>
-        　<h5 class="col-3">ジャンル</h5>
-        　　  <%= link_to  "一覧・追加", admin_genres_path, :class => "btn btn-blok mr-5" %>
+          <tr>
+          <td>ユーザー</td>
+        　　<th><%= link_to "一覧を見る", admin_users_path, :class => "btn btn-blok mr-5" %></th>
+        　</tr>
+        　<tr>
+        　<td>投稿アイテム</td>
+        　　<th><%= link_to "一覧を見る", admin_items_path, :class => "btn btn-blok mr-5" %></th>
+        　</tr>
+        　<tr>
+        　<td>ジャンル</td>
+        　　<th><%= link_to  "一覧・追加", admin_genres_path, :class => "btn btn-blok mr-5" %></th>
+        　</tr>
       　</table>
     　</div><br>
     </div>
