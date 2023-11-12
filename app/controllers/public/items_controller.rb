@@ -13,35 +13,21 @@ class Public::ItemsController < ApplicationController
 
   def index
     @items = Item.page(params[:page])
-    if params[:price]
-      case params[:price]
-      when "option1"
-        @items = Item.where(price: 0..5000).page(params[:page])
-      when "option2"
-        @items = Item.where(price: 5001..10000).page(params[:page])
-      when "option3"
-        @items = Item.where(price: 10001..20000).page(params[:page])
-      when "option4"
-        @items = Item.where(price: 20001..30000).page(params[:page])
-      when "option5"
-        @items = Item.where(price: 30001..999999).page(params[:page])
-      when "option6"
-        @items = Item.all.page(params[:page])
-      end
+  
+    if params[:price_range]
+      min_price, max_price = params[:price_range].split("-")
+      @items = @items.where(price: min_price..max_price)
     end
-      if params[:new_item]
-        @items = Item.new_item
-      elsif params[:old_item]
-        @items = Item.old_item
-      else
-          @items = params[:item_tag_id].present? ? ItemTag.find(params[:item_tag_id]).items : Item.all
-        end
-        if params[:keyword]
-          @items = @items.search(params[:keyword]).page(params[:page])
-        else
-          @items = @items.page(params[:page])
-        end
-        @keyword = params[:keyword]
+  
+    if params[:item_tag_id].present?
+      @items = @items.joins(:item_tags).where(item_tags: { id: params[:item_tag_id] })
+    end
+  
+    if params[:keyword].present?
+      @items = @items.search(params[:keyword])
+    end
+  
+    @keyword = params[:keyword]
   end
 
   def create
