@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       post 'to_follow' => 'relationships#create', as: 'to_follow'
       get 'followings_show' => 'relationships#followings', as: 'followings'
       get 'followers_show' => 'relationships#followers', as: 'followers'
+      get "search" => "items#search"
     end
   end
 

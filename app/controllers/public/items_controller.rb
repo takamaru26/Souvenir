@@ -29,6 +29,19 @@ class Public::ItemsController < ApplicationController
         @items = Item.all.page(params[:page])
       end
     end
+      if params[:new_item]
+        @items = Item.new_item
+      elsif params[:old_item]
+        @items = Item.old_item
+      else
+          @items = params[:item_tag_id].present? ? ItemTag.find(params[:item_tag_id]).items : Item.all
+        end
+        if params[:keyword]
+          @items = @items.search(params[:keyword]).page(params[:page])
+        else
+          @items = @items.page(params[:page])
+        end
+        @keyword = params[:keyword]
   end
 
   def create

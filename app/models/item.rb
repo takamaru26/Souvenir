@@ -33,8 +33,11 @@ class Item < ApplicationRecord
       item_tag = ItemTag.find_or_create_by(name: new_name) do |item_tag|
         item_tag.name = new_name
       end
-
       self.item_tags << item_tag
     end
+  end
+  
+  def self.search(keyword)
+      where("name LIKE ?", "%#{keyword}%")
   end
 end
