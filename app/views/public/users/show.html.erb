@@ -4,8 +4,10 @@
       <h3>User Information</h3>
       <%= render 'info', user: @user %>
 
-      <h3 class="mt-3">New Present</h3>
-      <%= render 'public/items/form', item: @item %>
+      <% if current_user == @user %> <!-- current_user が @user（@item の所有者）と等しい場合のみ表示 -->
+        <h3 class="mt-3">New Present</h3>
+        <%= render 'public/items/form', item: @item %>
+      <% end %>
     </div>
     <div class="col-md-9">
     <h3>Recent Present</h3>
