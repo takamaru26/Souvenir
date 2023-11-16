@@ -5,7 +5,7 @@
     
     <div class="sample_box3_1">
     <span class="sample_box_title"></span>
-    <table class='table'>
+    <table class='table table-sm'>
       <tbody>
         <% @items.each do |item| %>
           <tr>
@@ -21,6 +21,7 @@
             <th>投稿日：</th>
             <td><%= item.created_at.strftime('%Y/%m/%d') %></td>
             <!-- タグリスト -->
+            <th>登録タグ</th>
             <td>
               <% item.item_tags.each do |tag| %>
                 <i class="fa-sharp fa-solid fa-tag"></i>
