@@ -7,6 +7,7 @@ class Public::SearchsController < ApplicationController
 
   private
   def search_for(price_range)
+    # 価格検索
     case price_range
     when '0-5000'
       Item.where(price: 0..5000)

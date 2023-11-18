@@ -47,13 +47,13 @@ class Public::UsersController < ApplicationController
     user = User.find(params[:id])
     @user = user.follower_users
   end
-
+  # ユーザーの公開
   def update_release
     @user =  User.find(params[:user_id])
     @user.released! unless @user.released?
     redirect_to  "/public/users/#{@user.id}/edit", notice: 'このアカウントを公開しました'
   end
-
+  # ユーザーの非公開
   def update_nonrelease
     @user =  User.find(params[:user_id])
     @user.nonreleased! unless @user.nonreleased?
