@@ -6,6 +6,10 @@ class Item < ApplicationRecord
   has_many :ai_tags, dependent: :destroy
   has_many :tags, dependent: :destroy
   has_many :item_tags, through: :tags
+  
+  validates :name,presence:true
+  validates :price,presence:true
+  validates :explanation,presence:true
 
 
   def get_image
