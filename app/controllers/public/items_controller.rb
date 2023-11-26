@@ -12,8 +12,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.page(params[:page])
-  
+    @items = Item.order(created_at: :desc).page(params[:page])
     if params[:price_range]
       min_price, max_price = params[:price_range].split("-")
       @items = @items.where(price: min_price..max_price)
