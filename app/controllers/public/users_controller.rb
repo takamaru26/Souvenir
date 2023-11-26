@@ -5,7 +5,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @item = Item.new
-    @items = @user.items.page(params[:page])  
+    @items = @user.items.order(created_at: :desc).page(params[:page])  # created_at を降順で並び替え
     @tag_list = @item.item_tags.pluck(:name).join(',')
   end
 
