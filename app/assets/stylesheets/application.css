@@ -47,3 +47,13 @@ main {
   vertical-align: baseline;
   border-radius: .25em;
 }
+
+.centered-element {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.text-center {
+  text-align: center;
+}
