@@ -2,6 +2,7 @@
   <div class='row'>
     <div class='col-md-3'>
       <h3>User Information</h3>
+      <!-- 部分テンプレート(ユーザー情報)-->
       <%= render 'info', user: @user %>
 
       <% if current_user == @user %> <!-- current_user が @user（@item の所有者）と等しい場合のみ表示 -->
@@ -33,6 +34,7 @@
                 <% end %>
                 </td>
                 <td>
+                  <!-- 部分テンプレート(星レビュー)-->
                   <%= render "public/items/static_rate", item: item %>
                 </td>
                 <td>
