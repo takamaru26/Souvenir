@@ -13,7 +13,8 @@ class User < ApplicationRecord
   # 与フォロー関係を通じて参照→自分がフォローしている人
   has_many :followings, through: :relationships, source: :followed
   
-  validates :name,presence:true
+  validates :last_name,presence:true
+  validates :first_name,presence:true
   
   has_one_attached :profile_image
   # Include default devise modules. Others available are:
