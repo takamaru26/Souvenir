@@ -23,9 +23,9 @@
         </div>
         <% end %>
         <% if @user.released? %>
-          <%= button_to '非公開にする', "/public/users/#{@user.id}/nonrelease", method: :patch %>
+          <%= button_to 'ユーザー情報を非公開にする', "/public/users/#{@user.id}/nonrelease", method: :patch %>
         <% else %>
-          <%= button_to '公開する',"/public/users/#{@user.id}/release", method: :patch%>
+          <%= button_to 'ユーザー情報公開する',"/public/users/#{@user.id}/release", method: :patch%>
         <% end %>
     </div>
   </div>
